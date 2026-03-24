@@ -1,12 +1,43 @@
 export default {
   colors: {
-    primary: '#1e88e5',
-    background: '#f5f5f5',
-    text: '#212121'
+    primary: '#1565C0',
+    primaryLight: '#1E88E5',
+    primaryDark: '#0D47A1',
+    secondary: '#FF6F00',
+    secondaryLight: '#FFA000',
+    background: '#F5F7FA',
+    surface: '#FFFFFF',
+    text: '#212121',
+    textSecondary: '#757575',
+    textLight: '#FFFFFF',
+    border: '#E0E0E0',
+    success: '#2E7D32',
+    error: '#C62828',
+    modalSlide: '#1565C0',
+    modalFade: '#6A1B9A',
+    modalNone: '#E65100',
+    scrollView: '#2E7D32',
+    flatList: '#00838F',
+    sectionList: '#4E342E',
   },
   spacing: {
+    xs: 4,
     s: 8,
     m: 16,
-    l: 24
-  }
+    l: 24,
+    xl: 32,
+    xxl: 48,
+  },
+  fontSize: {
+    small: 12,
+    body: 16,
+    subtitle: 18,
+    title: 24,
+    header: 28,
+  },
+  borderRadius: {
+    s: 6,
+    m: 12,
+    l: 20,
+  },
 };
