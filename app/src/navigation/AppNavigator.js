@@ -16,8 +16,38 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { ModalTabsNavigator } from './ModalTabsNavigator';
 import { ScrollTabsNavigator } from './ScrollTabsNavigator';
 
+// Telas CRUD Spring Boot
+import PessoaListScreen from '../screens/PessoaListScreen';
+import PessoaFormScreen from '../screens/PessoaFormScreen';
+import PessoaDetailScreen from '../screens/PessoaDetailScreen';
+import ProdutoListScreen from '../screens/ProdutoListScreen';
+import ProdutoFormScreen from '../screens/ProdutoFormScreen';
+import ProdutoDetailScreen from '../screens/ProdutoDetailScreen';
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+const PessoaStack = createNativeStackNavigator();
+const ProdutoStack = createNativeStackNavigator();
+
+function PessoaStackNavigator() {
+  return (
+    <PessoaStack.Navigator screenOptions={{ headerShown: false }}>
+      <PessoaStack.Screen name="PessoaList" component={PessoaListScreen} />
+      <PessoaStack.Screen name="PessoaForm" component={PessoaFormScreen} />
+      <PessoaStack.Screen name="PessoaDetail" component={PessoaDetailScreen} />
+    </PessoaStack.Navigator>
+  );
+}
+
+function ProdutoStackNavigator() {
+  return (
+    <ProdutoStack.Navigator screenOptions={{ headerShown: false }}>
+      <ProdutoStack.Screen name="ProdutoList" component={ProdutoListScreen} />
+      <ProdutoStack.Screen name="ProdutoForm" component={ProdutoFormScreen} />
+      <ProdutoStack.Screen name="ProdutoDetail" component={ProdutoDetailScreen} />
+    </ProdutoStack.Navigator>
+  );
+}
 
 function handleLogout(navigation) {
   Alert.alert('Sair', 'Deseja realmente sair?', [
@@ -78,6 +108,22 @@ function DrawerNavigator({ navigation }) {
         options={{
           title: 'Inicio',
           drawerLabel: 'Inicio',
+        }}
+      />
+      <Drawer.Screen
+        name="Pessoas"
+        component={PessoaStackNavigator}
+        options={{
+          title: 'Pessoas',
+          drawerLabel: 'Pessoas',
+        }}
+      />
+      <Drawer.Screen
+        name="Produtos"
+        component={ProdutoStackNavigator}
+        options={{
+          title: 'Produtos',
+          drawerLabel: 'Produtos',
         }}
       />
       <Drawer.Screen
