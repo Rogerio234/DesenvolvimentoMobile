@@ -1,5 +1,5 @@
 # Definição de variáveis (ambiente "local" do REST Client)
-@base_url = INSERIR A URL DA SUA PORTA 8080 (PÚBLICA)
+@base_url = https://reimagined-winner-q7q597gw69qwfxj9v-8080.app.github.dev
 ### Inserir novo produto
 POST {{ base_url }}/api/produtos
 Content-Type: application/json

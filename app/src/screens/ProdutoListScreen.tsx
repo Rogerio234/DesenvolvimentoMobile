@@ -49,10 +49,18 @@ export default function ProdutoListScreen({ navigation }: any) {
         data={produtos}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
+          <View style={styles.card}>
           <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProdutoDetail', { id: item.id })}>
             <Text style={styles.nome}>{item.nome}</Text>
             <Text style={styles.info}>Qtd: {item.quantidade} | R$ {item.valor?.toFixed(2)}</Text>
           </TouchableOpacity>
+          <TouchableOpacity 
+              style={styles.botaoEditar} 
+              onPress={() => navigation.navigate('ProdutoForm', { id: item.id })}
+            >
+              <Text style={styles.botaoEditarTexto}>Editar</Text>
+            </TouchableOpacity>
+          </View>
         )}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         ListEmptyComponent={<Text style={styles.vazio}>Nenhum produto cadastrado.</Text>}
@@ -70,8 +78,31 @@ const styles = StyleSheet.create({
   titulo: { fontSize: 24, fontWeight: '800', color: '#0f172a' },
   botaoNovo: { backgroundColor: '#2563eb', paddingHorizontal: 16, paddingVertical: 10, borderRadius: 10 },
   botaoNovoTexto: { color: '#fff', fontWeight: '700' },
-  card: { backgroundColor: '#fff', borderRadius: 12, padding: 16, marginBottom: 10, elevation: 2 },
   nome: { fontSize: 18, fontWeight: '700', color: '#0f172a' },
   info: { fontSize: 14, color: '#64748b', marginTop: 4 },
   vazio: { textAlign: 'center', color: '#94a3b8', marginTop: 40, fontSize: 16 },
+  card: { 
+    backgroundColor: '#fff', 
+    borderRadius: 12, 
+    padding: 16, 
+    marginBottom: 10, 
+    elevation: 2,
+    flexDirection: 'row', // Alinha conteúdo e botão lado a lado
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  cardContent: { flex: 1 },
+  botaoEditar: {
+    backgroundColor: '#f1f5f9',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#e2e8f0'
+  },
+  botaoEditarTexto: {
+    color: '#2563eb',
+    fontWeight: '600',
+    fontSize: 13
+  },
 });

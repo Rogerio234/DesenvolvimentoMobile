@@ -25,20 +25,31 @@ export default function ProdutoFormScreen({ navigation, route }: any) {
   };
 
   useEffect(() => {
-    if (!editando) return;
-    (async () => {
-      try {
-        const resp = await api.get(`/api/produtos/${produtoId}`);
-        setNome(resp.data.nome);
-        setQuantidade(String(resp.data.quantidade));
-        setValor(String(resp.data.valor));
-      } catch {
-        abrirModal('erro', 'Nao foi possivel carregar os dados.');
-      } finally {
-        setCarregando(false);
-      }
-    })();
-  }, []);
+  if (!editando) {
+    // Caso o usuário entre em "Novo" após ter aberto um "Editar", limpamos os campos
+    setNome('');
+    setQuantidade('');
+    setValor('');
+    return;
+  }
+  
+  // Função de busca (já está correta no seu código)
+  const carregarDados = async () => {
+    try {
+      setCarregando(true);
+      const resp = await api.get(`/api/produtos/${produtoId}`);
+      setNome(resp.data.nome);
+      setQuantidade(String(resp.data.quantidade));
+      setValor(String(resp.data.valor));
+    } catch {
+      abrirModal('erro', 'Não foi possível carregar os dados.');
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  carregarDados();
+}, [produtoId]); // Adicione produtoId como dependência
 
   const salvar = async () => {
     if (!nome.trim()) { abrirModal('erro', 'Nome e obrigatorio.'); return; }
